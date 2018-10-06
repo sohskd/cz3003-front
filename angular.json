@@ -50,7 +50,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cz3003:build"
+            "browserTarget": "cz3003:build",
+            "port": 1337
           },
           "configurations": {
             "production": {
