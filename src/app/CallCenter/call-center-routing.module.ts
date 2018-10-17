@@ -5,7 +5,6 @@ import { CallCenterMainComponent } from './component/call-center-main/call-cente
 import { CallCenterComponent } from 'src/app/CallCenter/call-center.component';
 import { CallCenterIncidentComponent } from 'src/app/CallCenter/component/call-center-incident/call-center-incident.component';
 import { CallCenterCreateIncidentComponent } from 'src/app/CallCenter/component/call-center-create-incident/call-center-create-incident.component';
-import { CallCenterHomeIncidentComponent } from 'src/app/CallCenter/component/call-center-home-incident/call-center-home-incident.component';
 
 const routes: Routes = [
   {

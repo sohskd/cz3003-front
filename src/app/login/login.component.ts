@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.router.navigate(['/callcenter']);
+    // this.router.navigate(['/callcenter']);
 
 // UNCOMMENT THIS
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   // convenience getter for easy access to form fields
@@ -52,6 +52,5 @@ export class LoginComponent implements OnInit {
       console.log("route to pmo")
       // this.router.navigate(['/pmo']);
     }
-
   }
 }
