@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/callcenter']);
     } else if (this.loginForm.value.username == "pmo") {
       console.log("route to pmo")
-      // this.router.navigate(['/pmo']);
+      this.router.navigate(['/pmo']);
     }
   }
 }

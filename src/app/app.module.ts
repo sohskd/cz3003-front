@@ -7,16 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 
-import { PmoComponent } from './PMO/pmo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CallCenterComponent } from 'src/app/CallCenter/call-center.component';
 import { CallCenterModuleModule } from 'src/app/CallCenter/call-center-module.module';
+import { PmoModule } from './PMO/pmo.module';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PmoComponent,
     CallCenterComponent,
     LoginComponent,
   ],
@@ -30,7 +29,8 @@ import { LoginComponent } from './login/login.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAtm2mVTSZRWM0DdHYhAVmUyDMQPyh-nPQ',
     }),
-    CallCenterModuleModule
+    CallCenterModuleModule,
+    PmoModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
