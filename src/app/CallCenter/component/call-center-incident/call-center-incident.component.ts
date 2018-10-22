@@ -8,10 +8,42 @@ import { Router } from '@angular/router';
 })
 export class CallCenterIncidentComponent implements OnInit {
 
+  // add this config
+  settings = {
+    columns: {
+      id: {
+        title: 'ID'
+      },
+      name: {
+        title: 'Name'
+      },
+      city: {
+        title: 'City'
+      },
+      employeeId: {
+        title: 'Employee No.'
+      }
+    }
+  };
+
+  employees = [
+    {
+      "id": 1,
+      "name": "Jason Bourne",
+      "employeeId": "us2323",
+      "city": "New York"
+    },
+    {
+      "id": 2,
+      "name": "Mary",
+      "employeeId": "us6432",
+      "city": "San Jose"
+    }
+  ];
+
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmit() {
     console.log("> CallCenterIncidentComponent onSubmit()")

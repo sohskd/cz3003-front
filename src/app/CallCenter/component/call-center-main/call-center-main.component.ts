@@ -65,11 +65,11 @@ export class CallCenterMainComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("> ngOnInit CallCenterComponent")
+    console.log("> CallCenterMainComponent")
   }
 
   onCircleClick(data) {
     console.log("> onClick")
     console.log(data)
-  }  
+  }
 }

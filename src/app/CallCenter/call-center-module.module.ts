@@ -6,8 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { CallCenterIncidentComponent } from 'src/app/CallCenter/component/call-center-incident/call-center-incident.component';
 import { FormsModule } from '@angular/forms';
-import { AgGridModule } from 'ag-grid-angular';
 import { CallCenterCreateIncidentComponent } from 'src/app/CallCenter/component/call-center-create-incident/call-center-create-incident.component';
+import { CallCenterComponent } from './call-center.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { CallCenterCreateIncidentComponent } from 'src/app/CallCenter/component/
       apiKey: 'AIzaSyAtm2mVTSZRWM0DdHYhAVmUyDMQPyh-nPQ',
     }),
     FormsModule,
-    AgGridModule.withComponents([])
+    Ng2SmartTableModule
   ],
   declarations: [
     CallCenterMainComponent,
