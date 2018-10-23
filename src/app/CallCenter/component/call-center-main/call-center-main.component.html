@@ -1,32 +1,22 @@
-<ngb-tabset type="pills" [orientation]="currentOrientation">
-  <ngb-tab title="World Map">
-    <ng-template ngbTabContent>
-      <h1>{{ title }}</h1>
-      <!-- this creates a google map on the page with the given lat/lng from -->
-      <!-- the component as the initial center of the map: -->
-      <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng" [label]="myMarker"></agm-marker>
+<div class="mymain">
+  <ngb-tabset type="pills" [orientation]="currentOrientation">
+    <ngb-tab title="World Map">
+      <ng-template ngbTabContent>
+        <h1>{{ title }}</h1>
+        <!-- this creates a google map on the page with the given lat/lng from -->
+        <!-- the component as the initial center of the map: -->
+        <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng" [label]="myMarker"></agm-marker>
 
-        <agm-circle *ngFor="let data of circle"
-                [latitude]="data.lat"
-                [longitude]="data.lng"
-                [circleDraggable]="false"
-                [editable]="false"
-                [fillColor]="data.color"
-                [radius]="data.radius"
-                (circleClick)="onCircleClick(data)"
-                >
-        </agm-circle>
-      </agm-map>
-      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
-        Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab>
-    <ng-template ngbTabTitle>List Of Incidents</ng-template>
-
-    
-
-  </ngb-tab>
-</ngb-tabset>
+          <agm-circle *ngFor="let data of circle" [latitude]="data.lat" [longitude]="data.lng" [circleDraggable]="false" [editable]="false" [fillColor]="data.color" [radius]="data.radius" (circleClick)="onCircleClick(data)">
+          </agm-circle>
+        </agm-map>
+        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+          Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>List Of Incidents</ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

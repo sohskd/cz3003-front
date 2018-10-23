@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CallCenterServiceService } from '../../service/call-center/call-center-service.service';
 
 @Component({
   selector: 'app-call-center-incident',
@@ -41,9 +42,18 @@ export class CallCenterIncidentComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private callCenterServiceService: CallCenterServiceService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log("> CallCenterIncidentComponent ngOnInit()")
+    var test;
+    this.callCenterServiceService.getListOfIncidents().subscribe(
+      resp => {
+        test = resp;
+      }
+    );
+    console.log(test);
+  }
 
   onSubmit() {
     console.log("> CallCenterIncidentComponent onSubmit()")
