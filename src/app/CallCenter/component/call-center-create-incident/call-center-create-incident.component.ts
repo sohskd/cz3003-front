@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CallCenterCreateIncidentComponent implements OnInit {
 
+  // {
+  //         "assigned": "SPF",
+  //         "description": "Help",
+  //         "estimatedcasualties": 200,
+  //         "status": "open",
+  //         "longtitude": 109.685308,
+  //         "latitude": 1.343087,
+  //         "incidenttype": "ALPHA"
+  //     }
+
   constructor() { }
 
   ngOnInit() {

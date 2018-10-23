@@ -2,11 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application/json',
+//     'Authorization': 'Basic user1:123'
+//   })
+// };
+
+var headers_object = new HttpHeaders();
+headers_object.append('Content-Type', 'application/json');
+headers_object.append("Authorization", "Basic " + btoa("user1:123"));
+
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic user1:123'
-  })
+  headers: headers_object
 };
 
 @Injectable({
@@ -29,7 +37,14 @@ export class CallCenterServiceService {
     console.log("> getListOfIncidents");
     var getListOfIncidentsUrl = this.callCenterUrl + "/incidents";
     console.log("Calling url: " + getListOfIncidentsUrl);
-    return this.http.get(getListOfIncidentsUrl);
+    return this.http.get(getListOfIncidentsUrl, httpOptions);
+  }
+
+  postIncident(incident): any {
+    console.log("> postIncident");
+    var postIncidentsUrl = this.callCenterUrl + "/incidents";
+    console.log("Calling url: " + postIncidentsUrl);
+    return this.http.post(postIncidentsUrl, incident, httpOptions);
   }
 
   getTest(): any {

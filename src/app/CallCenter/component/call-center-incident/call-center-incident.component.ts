@@ -49,10 +49,18 @@ export class CallCenterIncidentComponent implements OnInit {
     var test;
     this.callCenterServiceService.getListOfIncidents().subscribe(
       resp => {
+        console.log("> resp");
         test = resp;
+      },
+      err => {
+        console.log("> err");
+        console.log(err);
+      },
+      complete => {
+        console.log("> complete");
+        console.log(test);
       }
     );
-    console.log(test);
   }
 
   onSubmit() {
