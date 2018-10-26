@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CallCenterCreateIncidentComponent } from 'src/app/CallCenter/component/call-center-create-incident/call-center-create-incident.component';
 import { CallCenterComponent } from './call-center.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+// MDB Angular Free
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
       apiKey: 'AIzaSyAtm2mVTSZRWM0DdHYhAVmUyDMQPyh-nPQ',
     }),
     FormsModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
   ],
   declarations: [
     CallCenterMainComponent,

@@ -27,7 +27,6 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAtm2mVTSZRWM0DdHYhAVmUyDMQPyh-nPQ',
     }),
     CallCenterModuleModule,
     PmoModule

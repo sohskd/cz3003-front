@@ -9,13 +9,12 @@ import { Observable } from 'rxjs';
 //   })
 // };
 
-var headers_object = new HttpHeaders();
-headers_object.append('Content-Type', 'application/json');
-headers_object.append("Authorization", "Basic " + btoa("user1:123"));
-
-const httpOptions = {
-  headers: headers_object
-};
+// var headers_object = new HttpHeaders();
+// headers_object.append('Content-Type', 'application/json');
+// // headers_object.append("Authorization", "Basic " + btoa("user1:123"));
+// const httpOptions = {
+//   headers: headers_object
+// };
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +22,13 @@ const httpOptions = {
 export class CallCenterServiceService {
 
   private callCenterUrl = "http://testing2cms.herokuapp.com";  // URL to web api
+  private httpOptions;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
 
-  getListOfCallCenters (): any {
+  }
+
+  getListOfCallCenters(): any {
     console.log("> getListOfCallCenters");
     // var getListOfCallCentersUrl = this.callCenterUrl + "/getincidentlist";
     // console.log("Calling url: " + getListOfCallCentersUrl);
@@ -37,14 +39,28 @@ export class CallCenterServiceService {
     console.log("> getListOfIncidents");
     var getListOfIncidentsUrl = this.callCenterUrl + "/incidents";
     console.log("Calling url: " + getListOfIncidentsUrl);
-    return this.http.get(getListOfIncidentsUrl, httpOptions);
+    return this.http.get(getListOfIncidentsUrl);
   }
 
   postIncident(incident): any {
     console.log("> postIncident");
     var postIncidentsUrl = this.callCenterUrl + "/incidents";
     console.log("Calling url: " + postIncidentsUrl);
-    return this.http.post(postIncidentsUrl, incident, httpOptions);
+    return this.http.post(postIncidentsUrl, incident);
+  }
+
+  getListOfWeathers(): any {
+    console.log("> getListOfWeathers");
+    var getListOfWeathersUrl = this.callCenterUrl + "/WEATHER";
+    console.log("Calling url: " + getListOfWeathersUrl);
+    return this.http.get(getListOfWeathersUrl);
+  }
+
+  getListOfPSI(): any {
+    console.log("> getListOfPSI");
+    var getListOfPSIUrl = this.callCenterUrl + "/PSI";
+    console.log("Calling url: " + getListOfPSIUrl);
+    return this.http.get(getListOfPSIUrl);
   }
 
   getTest(): any {

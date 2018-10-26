@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CallCenterServiceService } from 'src/app/CallCenter/service/call-center/call-center-service.service';
 import { google } from '@agm/core/services/google-maps-types';
+import { GeocodeService } from '../../service/geocode/geocode.service';
+import { ShareService } from '../../service/share/share.service';
 
 @Component({
   selector: 'app-call-center-main',
@@ -41,35 +43,138 @@ export class CallCenterMainComponent implements OnInit {
   // }
 
 
-   /*
-    Map Data
-   */
+  /*
+   Map Data
+  */
   currentOrientation = 'horizontal';
   title: string = 'World Map';
-  lat: number = 1.3483;
-  lng: number = 103.6831;
-  myMarker = "Desmond Marker";
-  circle: any;
+  markerlat: number;
+  markerlng: number;
+  myMarkerLabel: string;
 
-  constructor() {
-    // this.lat = 51.678418;
-    // this.lng = 7.809007;
-    this.circle = [
-      { lat: this.lat, lng: this.lng, radius: 2000, color: 'red' },
-      { lat: this.lat + 0.1, lng: this.lng + 0.1, radius: 2000, color: 'green' },
-      // { lat: 54.79, lng: 10.8, radius: 60000, color: 'yellow' },
-      // { lat: 51.79, lng: 8.8, radius: 60000, color: 'yellow' },
-      // { lat: 60.79, lng: 7.8, radius: 60000, color: 'green' },
-    ];
+  weather: any;
+  psi: any;
+  psiList: any;
+
+  address: string;
+  location: { latitude: number, longitude: number };
+  loading: boolean;
+
+  selectedCircle: any = {};
+  selectedPSI: any = {};
+
+  constructor(private geocodeService: GeocodeService,
+    private ref: ChangeDetectorRef,
+    private shareService: ShareService,
+    private callCenterServiceService: CallCenterServiceService) {
+
+    // Initial Marker
+    this.markerlat = 1.3483;
+    this.markerlng = 103.6831;
     this.currentOrientation = 'horizontal';
+
+    this.address = shareService.getAddress();
   }
 
   ngOnInit() {
     console.log("> CallCenterMainComponent")
+    this.showLocation();
+    this.getWeather();
+    this.getPSI();
+    // this.callCenterServiceService.getListOfWeathers();
   }
 
-  onCircleClick(data) {
-    console.log("> onClick")
-    console.log(data)
+  getWeather() {
+    this.callCenterServiceService.getListOfWeathers().subscribe(
+      resp => {
+        this.weather = resp;
+      },
+      err => {
+        console.log(err)
+      },
+      complete => {
+        console.log("> complete getWeather")
+        this.weather.forEach(function(obj) {
+          obj.radius = 500;
+          obj.fillColor = 'blue';
+          obj.fillOpacity = 0.80;
+        });
+
+        console.log(this.weather)
+      }
+    )
+  }
+
+  onWeatherClick(weather) {
+    console.log("> onWeatherClick")
+    this.selectedCircle = weather;
+    console.log(weather)
+  }
+
+  getPSI() {
+    this.callCenterServiceService.getListOfPSI().subscribe(
+      resp => {
+        this.psi = resp;
+      },
+      err => {
+        console.log(err)
+      },
+      complete => {
+        console.log("> complete getPSI");
+        console.log(this.psi);
+        this.psiList = Object.values(this.psi)
+        this.psiList.forEach(function(obj) {
+          obj.radius = Math.sqrt(obj.value) * 100;
+          obj.fillColor = 'red';
+          obj.fillOpacity = 0.80;
+        });
+
+        console.log(this.psiList);
+      }
+    )
+  }
+
+  onPSIClick(psi) {
+    console.log("> onWeatherClick")
+    this.selectedPSI = psi;
+    console.log(psi)
+  }
+
+  showLocation() {
+    this.addressToCoordinates();
+  }
+
+  addressToCoordinates() {
+    this.loading = true;
+    this.geocodeService.geocodeAddress(this.address)
+      .subscribe(
+        location => {
+          this.shareService.saveAddress(this.address)
+          this.shareService.saveLocation(location)
+          this.location = location;
+          this.loading = false;
+
+          // Set the marker lat & lng base on geocoding
+          this.myMarkerLabel = this.shareService.getAddress();
+          this.markerlat = location.lat;
+          this.markerlng = location.lng;
+
+          this.ref.detectChanges();
+        }
+      );
+  }
+
+  onMarkerClick(infoWindow, gm) {
+
+    console.log(infoWindow)
+    console.log(gm)
+
+    // if (gm.lastOpen != null) {
+    //   gm.lastOpen.close();
+    // }
+    //
+    // gm.lastOpen = infoWindow;
+
+    infoWindow.open();
   }
 }
