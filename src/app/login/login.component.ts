@@ -51,6 +51,15 @@ export class LoginComponent implements OnInit {
     } else if (this.loginForm.value.username == "pmo") {
       console.log("route to pmo")
       this.router.navigate(['/pmo']);
+    } else if (this.loginForm.value.username == "scdf") {
+      console.log("route to scdf")
+      this.router.navigate(['/scdf']);
+    } else if (this.loginForm.value.username == "spf") {
+      console.log("route to spf")
+      this.router.navigate(['/spf']);
+    } else if (this.loginForm.value.username == "sp") {
+      console.log("route to sp")
+      this.router.navigate(['/sp']);
     }
   }
 }

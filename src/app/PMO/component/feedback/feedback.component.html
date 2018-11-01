@@ -1,0 +1,13 @@
+<div *ngIf="show == true; else elseBlock">
+  <ng2-smart-table [settings]="settings" [source]="listOfFeedbackTable">
+  </ng2-smart-table>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <ng-template #elseBlock>
+        <div class="loader"></div>
+      </ng-template>
+    </div>
+  </div>
+</div>

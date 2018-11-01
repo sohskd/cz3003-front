@@ -6,7 +6,7 @@ import { CallCenterComponent } from 'src/app/CallCenter/call-center.component';
 import { CallCenterIncidentComponent } from 'src/app/CallCenter/component/call-center-incident/call-center-incident.component';
 import { CallCenterCreateIncidentComponent } from 'src/app/CallCenter/component/call-center-create-incident/call-center-create-incident.component';
 
-const routes: Routes = [
+const callCenterRoutes: Routes = [
   {
     path: 'callcenter',
     component: CallCenterComponent,
@@ -35,8 +35,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(callCenterRoutes),
   ],
-  declarations: []
+  exports:[RouterModule]
 })
 export class CallCenterRoutingModule { }

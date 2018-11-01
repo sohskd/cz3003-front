@@ -63,6 +63,13 @@ export class CallCenterServiceService {
     return this.http.get(getListOfPSIUrl);
   }
 
+  getDengueFile(): any {
+    console.log("> getDengueFile");
+    var getDengueFileUrl = this.callCenterUrl + "/DENGUE";
+    console.log("Calling url: " + getDengueFileUrl);
+    return this.http.get(getDengueFileUrl);
+  }
+
   getTest(): any {
     return "Hello world!";
   }

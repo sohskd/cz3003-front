@@ -3,6 +3,30 @@
     <ngb-tab title="World Map">
       <ng-template ngbTabContent>
         <h1>{{ title }}</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Information</th>
+              <th scope="col">Value</th>
+              <th scope="col">Latitude</th>
+              <th scope="col">Longitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Weather</th>
+              <td>{{ this.selectedCircle.Forecast }}</td>
+              <td>{{ this.selectedCircle.latitude }}</td>
+              <td>{{ this.selectedCircle.longitude }}</td>
+            </tr>
+            <tr>
+              <th scope="row">PSI</th>
+              <td>{{ this.selectedPSI.value }}</td>
+              <td>{{ this.selectedPSI.latitude }}</td>
+              <td>{{ this.selectedPSI.longtitude }}</td>
+            </tr>
+          </tbody>
+        </table>
 
         <form (ngSubmit)="showLocation()">
           <input type="text" [(ngModel)]="address" required [ngModelOptions]="{standalone: true}">
@@ -13,14 +37,9 @@
         <agm-map [latitude]="markerlat" [longitude]="markerlng">
           <agm-marker [latitude]="markerlat" [longitude]="markerlng" [label]="myMarkerLabel" (markerClick)="onMarkerClick(infoWindow,gm)">
             <agm-info-window [disableAutoPan]="false" #infoWindow>
-
               <div>
                 yo
               </div>
-              <div>
-                <!-- <a (click)="onClickInfoView({id:m.id})" class="btn btn-attention pull-right">Daje <i class="fa fa-angle-double-right"></i></a> -->
-              </div>
-
             </agm-info-window>
           </agm-marker>
           <agm-circle *ngFor="let data of weather" [latitude]="data.latitude" [longitude]="data.longitude" [radius]="data.radius" [fillColor]="data.fillColor" [fillOpacity]="data.fillOpacity" [circleDraggable]="false" [editable]="false" (circleClick)="onWeatherClick(data)">
@@ -32,12 +51,12 @@
         </agm-map>
         <!-- <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.
           Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p> -->
-        <div>
+        <!-- <div>
           Weather: {{ this.selectedCircle.Forecast }} Latitude: {{ this.selectedCircle.latitude }} Longitude: {{ this.selectedCircle.longitude }}
         </div>
         <div>
           PSI Value: {{ this.selectedPSI.value }} Latitude: {{ this.selectedPSI.latitude }} Longitude: {{ this.selectedPSI.longtitude }}
-        </div>
+        </div> -->
       </ng-template>
     </ngb-tab>
     <ngb-tab>

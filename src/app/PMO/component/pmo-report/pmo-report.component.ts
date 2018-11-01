@@ -1,26 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import * as jsPDF from 'jspdf';
+import { PmoService } from '../../service/pmo.service';
 
 @Component({
   selector: 'pmo-report',
-  templateUrl: './pmo-report.component.html'
+  templateUrl: './pmo-report.component.html',
+  styleUrls: ['./pmo-report.component.css']
 })
 export class PmoReportComponent implements OnInit {
 
-  constructor() {
+  listOfBombshelter: Array<any>;
+  show;
+  settings;
 
+  constructor(private pmoService: PmoService) {
+    this.settings = {
+      columns: {
+        description: {
+          title: 'Bombshelter'
+        },
+        postalcode: {
+          title: 'Postal Code'
+        }
+      }
+    };
+
+    this.show = false;
   }
 
   ngOnInit() {
-
+    this.getlistOfBombshelter();
   }
 
-  downloadReport() {
-    var doc = new jsPDF();
-    //
-    doc.text('Hello world!', 10, 10);
-    doc.save('a4.pdf');
+  getlistOfBombshelter() {
+    this.pmoService.getlistOfBombshelter().subscribe(
+      resp => {
+        this.listOfBombshelter = resp;
+      }, err => {
+        console.log(err);
+      }, complete => {
+        console.log(this.listOfBombshelter);
+        this.show = true;
+      });
   }
-
-
 }

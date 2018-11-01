@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PmoComponent } from './pmo.component';
 import { PmoMainComponent } from './component/pmo-main/pmo-main.component';
 import { PmoReportComponent } from './component/pmo-report/pmo-report.component';
+import { FeedbackComponent } from './component/feedback/feedback.component';
 
 const pmoRoutes: Routes = [
   {
@@ -20,8 +21,12 @@ const pmoRoutes: Routes = [
         component: PmoMainComponent,
       },
       {
-        path: 'report',
+        path: 'bombshelter',
         component: PmoReportComponent,
+      },
+      {
+        path: 'feedback',
+        component: FeedbackComponent,
       },
     ]
   }

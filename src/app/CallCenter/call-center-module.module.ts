@@ -7,8 +7,8 @@ import { AgmCoreModule } from '@agm/core';
 import { CallCenterIncidentComponent } from 'src/app/CallCenter/component/call-center-incident/call-center-incident.component';
 import { FormsModule } from '@angular/forms';
 import { CallCenterCreateIncidentComponent } from 'src/app/CallCenter/component/call-center-create-incident/call-center-create-incident.component';
-import { CallCenterComponent } from './call-center.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CallCenterComponent } from './call-center.component';
 // MDB Angular Free
 
 @NgModule({
@@ -23,9 +23,13 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     Ng2SmartTableModule,
   ],
   declarations: [
+    CallCenterComponent,
     CallCenterMainComponent,
     CallCenterIncidentComponent,
     CallCenterCreateIncidentComponent,
-  ]
+  ],
+  entryComponents: [
+    CallCenterComponent
+  ],
 })
 export class CallCenterModuleModule { }

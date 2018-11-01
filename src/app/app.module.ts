@@ -8,15 +8,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { CallCenterComponent } from 'src/app/CallCenter/call-center.component';
 import { CallCenterModuleModule } from 'src/app/CallCenter/call-center-module.module';
 import { PmoModule } from './PMO/pmo.module';
 import { LoginComponent } from './login/login.component';
+import { ScdfModule } from './SCDF/scdf.module';
+import { SPModule } from './sp/sp.module';
+import { SPFModule } from './spf/spf.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CallCenterComponent,
     LoginComponent,
   ],
   imports: [
@@ -27,9 +28,13 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NgbModule,
     AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAtm2mVTSZRWM0DdHYhAVmUyDMQPyh-nPQ',
     }),
     CallCenterModuleModule,
-    PmoModule
+    PmoModule,
+    ScdfModule,
+    SPModule,
+    SPFModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

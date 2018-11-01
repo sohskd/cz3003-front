@@ -1,0 +1,110 @@
+<div class="mymain">
+  <ngb-tabset type="pills" [orientation]="currentOrientation">
+    <ngb-tab title="World Map">
+      <ng-template ngbTabContent>
+        <h1>{{ title }}</h1>
+        <!-- <form (ngSubmit)="showLocation()">
+          <input type="text" [(ngModel)]="address" required [ngModelOptions]="{standalone: true}">
+          <button type="submit">Show Location</button>
+        </form> -->
+        <agm-map [latitude]="markerlat" [longitude]="markerlng">
+          <agm-marker *ngFor="let inc of listOfIncidents" [latitude]="inc.latitude" [longitude]="inc.longtitude" [label]="inc.status" (markerClick)="onMarkerClick(infoWindow,gm)">
+            <agm-info-window [disableAutoPan]="false" #infoWindow>
+              <!-- <div class="card" style="width: 18rem;" *ngIf="inc.status != 'Pending'; else elseBlock"> -->
+              <div class="container" style="width: 18rem;" *ngIf="inc.statusFirstStage != 'Pending'; else elseBlock">
+                <div class="card-body">
+                  <h5 class="card-title">Description:</h5>
+                  <p class="card-text">{{inc.description}}</p>
+                  <form name="form" (ngSubmit)="f.form.valid && onSubmit(inc)" #f="ngForm" novalidate *ngIf="statusSuccess != true">
+                    <div class="form-group">
+                      <label for="status" style="color: white">Status</label>
+                      <!-- <h5 class="card-title">Status:</h5> -->
+                      <select class="form-control" id="status" name="status" [(ngModel)]="inc.status">
+                        <option [value]="stat" *ngFor="let stat of listOfStatus">{{stat}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <button class="btn btn-primary">Submit Status</button>
+                    </div>
+                  </form>
+                  <div *ngIf="loaderBool == true">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col text-center">
+                          <div class="loader"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="statusSuccess == true">
+                    <div class="alert alert-success" role="alert">
+                      Status successfully submitted.
+                    </div>
+                  </div>
+                  <div *ngIf="error == true">
+                    <div class="alert alert-danger" role="alert">
+                      An error occured.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ng-template #elseBlock>
+                <div class="container">
+                  <div class="row">
+                    <h3 style="color: white">Incident Feedback</h3>
+                  </div>
+                  <div class="row">
+                    <form name="form" (ngSubmit)="f.form.valid && onSubmitResolve(inc)" #f="ngForm" novalidate *ngIf="statusSuccess != true">
+                      <div class="form-group">
+                        <label style="color: white" for="title">Title: </label>
+                        <input type="text" class="form-control" name="title" [(ngModel)]="inc.title" />
+                      </div>
+                      <div class="form-group">
+                        <label style="color: white" for="casualties">Number of casualties: </label>
+                        <input type="text" class="form-control" name="casualties" [(ngModel)]="inc.casualties" />
+                      </div>
+                      <div class="form-group">
+                        <label style="color: white" for="description_resolve">Description: </label>
+                        <textarea class="form-control" id="description_resolve" name="description_resolve" [(ngModel)]="inc.description_resolve" rows="3"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="row">
+                    <div *ngIf="loaderBool == true">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col text-center">
+                            <div class="loader"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="statusSuccess == true">
+                      <div class="alert alert-success" role="alert">
+                        Status successfully submitted.
+                      </div>
+                    </div>
+                    <div *ngIf="error == true">
+                      <div class="alert alert-danger" role="alert">
+                        An error occured.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </agm-info-window>
+          </agm-marker>
+          <agm-circle *ngFor="let inc of listOfIncidents" [latitude]="inc.latitude" [longitude]="inc.longtitude" [radius]="inc.radius" [fillColor]="inc.fillColor" [fillOpacity]="inc.fillOpacity" [circleDraggable]="false" [editable]="false">
+          </agm-circle>
+        </agm-map>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>List Of Incidents</ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

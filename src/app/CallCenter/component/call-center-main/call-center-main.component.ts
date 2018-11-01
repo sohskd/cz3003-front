@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CallCenterServiceService } from 'src/app/CallCenter/service/call-center/call-center-service.service';
 import { google } from '@agm/core/services/google-maps-types';
-import { GeocodeService } from '../../service/geocode/geocode.service';
 import { ShareService } from '../../service/share/share.service';
+import { GeocodeService } from '../../../utility/geocode/geocode.service';
 
 @Component({
   selector: 'app-call-center-main',
@@ -55,6 +55,7 @@ export class CallCenterMainComponent implements OnInit {
   weather: any;
   psi: any;
   psiList: any;
+  dengue: any;
 
   address: string;
   location: { latitude: number, longitude: number };
@@ -81,7 +82,23 @@ export class CallCenterMainComponent implements OnInit {
     this.showLocation();
     this.getWeather();
     this.getPSI();
+    this.getDengue();
     // this.callCenterServiceService.getListOfWeathers();
+  }
+
+  getDengue() {
+    this.callCenterServiceService.getDengueFile().subscribe(
+      resp => {
+        this.dengue = resp;
+      },
+      err => {
+        console.log(err)
+      },
+      complete => {
+        console.log("> complete getDengue")
+        console.log(this.dengue);
+      }
+    )
   }
 
   getWeather() {
